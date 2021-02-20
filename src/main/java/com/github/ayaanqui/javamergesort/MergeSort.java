@@ -35,11 +35,15 @@ public class MergeSort<T extends Comparable<T>> {
         return mergedList;
     }
 
-    public void divide(List<T> sublist) {
+    public List<T> divide(List<T> sublist) {
+        if (sublist.size() == 1)
+            return sublist;
 
+        final int size = sublist.size();
+        return merge(divide(sublist.subList(0, size / 2)), divide(sublist.subList(size / 2, size)));
     }
 
     public List<T> sort() {
-        return list;
+        return divide(this.list);
     }
 }
